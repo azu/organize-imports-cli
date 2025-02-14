@@ -16,7 +16,7 @@ Plays nicely with [Prettier](https://prettier.io) and [lint-staged](https://gith
 ## Usage
 
 ```console
-> organize-imports-cli [--list-different] files...
+> npx @azu/organize-imports-cli [--list-different] files...
 ```
 
 Files can be specific `ts` and `js` files or `tsconfig[.*].json`, in which case the whole project is processed.
@@ -24,3 +24,7 @@ Files can be specific `ts` and `js` files or `tsconfig[.*].json`, in which case 
 Files containing the substring `// organize-imports-ignore` are skipped.
 
 The `--list-different` flag prints a list of files with unorganized imports. No files are modified.
+
+## Fork
+
+- Fix https://github.com/thorn0/organize-imports-cli/issues/256
