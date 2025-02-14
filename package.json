@@ -1,5 +1,5 @@
 {
-  "name": "organize-imports-cli",
+  "name": "@azu/organize-imports-cli",
   "version": "0.10.0",
   "description": "VS Code's 'Organize imports' executable from command line",
   "bin": "./cli.js",
@@ -12,11 +12,11 @@
   "dependencies": {
     "chalk": "^4.0.0",
     "editorconfig": "^0.15.3",
-    "ts-morph": "^15.0.0",
+    "ts-morph": "^25.0.1",
     "tsconfig": "^7.0.0"
   },
   "devDependencies": {
-    "@types/node": "^17.0.35",
+    "@types/node": "^22.13.4",
     "escape-string-regexp": "^4.0.0",
     "jest": "^28.1.0",
     "strip-ansi": "^6.0.0"
@@ -25,5 +25,6 @@
     "all-checks": "yarn test && yarn run typecheck",
     "test": "jest",
     "typecheck": "tsc --checkJs --allowJs --noEmit --strict cli.js"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca"
 }
