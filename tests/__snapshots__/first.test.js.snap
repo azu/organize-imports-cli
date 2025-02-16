@@ -1,25 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`The first Test (status) 1`] = `0`;
+exports[`The first Test - processes file correctly 1`] = `1`;
 
-exports[`The first Test (stderr) 1`] = `""`;
+exports[`The first Test - processes file correctly 2`] = `""`;
 
-exports[`The first Test (stdout) 1`] = `
-"Organizing imports...
-<dir>/file1.js/*CR*/
-<dir>/file1.js (modified)
-Done!
-"
-`;
+exports[`The first Test - processes file correctly 3`] = `"appendStdout is not defined"`;
 
-exports[`The first Test (write) 1`] = `
-Array [
-  Object {
-    "content": "import path from \\"path\\";
-
-console.log(path.resolve(\\".\\"));
-",
-    "filename": "file1.js",
-  },
-]
-`;
+exports[`The first Test - processes file correctly 4`] = `Array []`;

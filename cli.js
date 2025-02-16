@@ -1,15 +1,14 @@
 #!/usr/bin/env node
-
-const {
+import {
     Project,
     IndentationText,
     NewLineKind,
     QuoteKind
-  } = require("ts-morph"),
-  tsconfig = require("tsconfig"),
-  editorconfig = require("editorconfig"),
-  chalk = require("chalk"),
-  path = require("path");
+} from "ts-morph";
+import tsconfig from "tsconfig";
+import editorconfig from "editorconfig";
+import chalk from "chalk";
+import path from "node:path";
 
 if (process.argv.length < 3) {
   console.error("No files specified.");
