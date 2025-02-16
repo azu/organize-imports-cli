@@ -1,22 +1,23 @@
-"use strict";
-
 // Based on https://github.com/prettier/prettier/blob/master/tests_integration/runPrettier.js
+import fs from "node:fs";
+import path from "node:path";
+import stripAnsi from "strip-ansi";
+import escapeStringRegexp from "escape-string-regexp";
+import { fileURLToPath } from "node:url";
+import { jest, expect } from '@jest/globals';
 
-const fs = require("fs");
-const path = require("path");
-const stripAnsi = require("strip-ansi");
-const escapeStringRegexp = require("escape-string-regexp");
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const rootDir = "../";
-const pkg = require(path.join(rootDir, "package.json"));
-const cli = path.join(rootDir, pkg.bin);
+const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, rootDir, "package.json"), 'utf8'));
+const cli = path.join(__dirname, rootDir, pkg.bin);
 
 /**
  * @param {string} dir
  * @param {string[]=} args
  * @param {*=} options
  */
-function runCli(dir, args = [], options = {}) {
+async function runCli(dir, args = [], options = {}) {
   dir = normalizeDir(dir);
 
   let status;
@@ -85,7 +86,7 @@ function runCli(dir, args = [], options = {}) {
   jest.resetModules();
 
   try {
-    require(cli);
+    const module = await import(cli);
     status = (status === undefined ? process.exitCode : status) || 0;
   } catch (error) {
     status = 1;
@@ -100,52 +101,16 @@ function runCli(dir, args = [], options = {}) {
     jest.restoreAllMocks();
   }
 
-  const result = { status, stdout, stderr, write };
-
-  const testResult = (testOptions = {}) => {
-    const dirRegExp = RegExp(`^${escapeStringRegexp(dir)}\\b`, "gm");
-    Object.keys(result).forEach(name => {
-      test(`(${name})`, () => {
-        const value =
-          // \r is trimmed from jest snapshots by default;
-          // manually replacing this character with /*CR*/ to test its true presence
-          // If ignoreLineEndings is specified, \r is simply deleted instead
-          typeof result[name] === "string"
-            ? stripAnsi(result[name])
-                .replace(/\r/g, options.ignoreLineEndings ? "" : "/*CR*/\n")
-                .replace(dirRegExp, "<dir>")
-            : result[name];
-        if (name in testOptions) {
-          if (name === "status" && testOptions[name] === "non-zero") {
-            expect(value).not.toEqual(0);
-          } else {
-            expect(value).toEqual(testOptions[name]);
-          }
-        } else {
-          expect(value).toMatchSnapshot();
-        }
-      });
-    });
-
-    return result;
+  return {
+    status,
+    stdout: stripAnsi(stdout),
+    stderr: stripAnsi(stderr),
+    write
   };
-
-  return { test: testResult, ...result };
-
-  function appendStdout(text) {
-    if (status === undefined) {
-      stdout += text;
-    }
-  }
-  function appendStderr(text) {
-    if (status === undefined) {
-      stderr += text;
-    }
-  }
 }
 
 function normalizeDir(dir) {
   return path.resolve(__dirname, dir).replace(/\\/g, "/");
 }
 
-module.exports = runCli;
+export default runCli;

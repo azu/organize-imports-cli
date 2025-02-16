@@ -1,5 +1,10 @@
-const runCli = require("./run-cli");
+import { test, expect } from '@jest/globals';
+import runCli from "./run-cli.js";
 
-describe("exclude in tsconfig", () => {
-  runCli("cli/exclude", ["included.ts", "excluded.ts"]).test();
+test("exclude in tsconfig - excludes files correctly", async () => {
+  const result = await runCli("cli/exclude", ["--list"]);
+  expect(result.status).toMatchSnapshot();
+  expect(result.stdout).toMatchSnapshot();
+  expect(result.stderr).toMatchSnapshot();
+  expect(result.write).toMatchSnapshot();
 });

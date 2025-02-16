@@ -1,5 +1,10 @@
-const runCli = require("./run-cli");
+import { test, expect } from '@jest/globals';
+import runCli from "./run-cli.js";
 
-describe("The first Test", () => {
-  runCli("cli/first", ["file1.js"]).test();
+test("The first Test - processes file correctly", async () => {
+  const result = await runCli("cli/first", ["file1.js"]);
+  expect(result.status).toMatchSnapshot();
+  expect(result.stdout).toMatchSnapshot();
+  expect(result.stderr).toMatchSnapshot();
+  expect(result.write).toMatchSnapshot();
 });
