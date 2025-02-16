@@ -6,4 +6,4 @@ exports[`grouped imports - processes grouped imports 2`] = `""`;
 
 exports[`grouped imports - processes grouped imports 3`] = `"appendStdout is not defined"`;
 
-exports[`grouped imports - processes grouped imports 4`] = `Array []`;
+exports[`grouped imports - processes grouped imports 4`] = `[]`;

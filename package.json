@@ -11,8 +11,8 @@
   "author": "Georgii Dolzhykov",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^4.0.0",
-    "editorconfig": "^0.15.3",
+    "chalk": "^5.4.1",
+    "editorconfig": "^2.0.1",
     "ts-morph": "^25.0.1",
     "tsconfig": "^7.0.0"
   },
@@ -31,9 +31,7 @@
     "transform": {},
     "moduleNameMapper": {
       "^(\\.{1,2}/.*)\\.js$": "$1"
-    },
-    "testEnvironment": "node",
-    "injectGlobals": true
+    }
   },
   "packageManager": "yarn@1.22.22+sha256.c17d3797fb9a9115bf375e31bfd30058cac6bc9c3b8807a3d8cb2094794b51ca"
 }

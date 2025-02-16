@@ -6,4 +6,4 @@ exports[`--list-different - checks different files 2`] = `""`;
 
 exports[`--list-different - checks different files 3`] = `""`;
 
-exports[`--list-different - checks different files 4`] = `Array []`;
+exports[`--list-different - checks different files 4`] = `[]`;

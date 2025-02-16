@@ -6,4 +6,4 @@ exports[`exclude in tsconfig - excludes files correctly 2`] = `""`;
 
 exports[`exclude in tsconfig - excludes files correctly 3`] = `"appendStdout is not defined"`;
 
-exports[`exclude in tsconfig - excludes files correctly 4`] = `Array []`;
+exports[`exclude in tsconfig - excludes files correctly 4`] = `[]`;

@@ -6,4 +6,4 @@ exports[`The first Test - processes file correctly 2`] = `""`;
 
 exports[`The first Test - processes file correctly 3`] = `"appendStdout is not defined"`;
 
-exports[`The first Test - processes file correctly 4`] = `Array []`;
+exports[`The first Test - processes file correctly 4`] = `[]`;
